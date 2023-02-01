@@ -18,11 +18,8 @@ public class UserServiceImpl implements UserService {
 		return dao.findAll();
 	}
 
-
-
 	@Override
 	public User findByEmail(String email) {
-		
 		return dao.findByEmail(email);
 	}
 

@@ -1,11 +1,12 @@
 <%@page session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>  
 <html>
 <head>
-<title>${title}</title>
+<title><s:message code="page.userinfo"></s:message></title>
 </head>
 <body>
-    <jsp:include page="_menu.jsp" />
+<jsp:include page="_navbar.jsp" />
 
 
       <h1>Message : ${message1}</h1>

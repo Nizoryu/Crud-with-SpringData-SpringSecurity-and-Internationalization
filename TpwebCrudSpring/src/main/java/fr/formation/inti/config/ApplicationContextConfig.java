@@ -1,10 +1,8 @@
 package fr.formation.inti.config;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -13,21 +11,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -39,8 +32,8 @@ import org.springframework.web.servlet.view.JstlView;
 public class ApplicationContextConfig {
 	// The Environment class serves as the property holder
 	// and stores all the properties loaded by the @PropertySource
-	@Autowired
-	private Environment env;
+//	@Autowired
+//	private Environment env;
 
 	@Bean(name = "viewResolver")
 	public ViewResolver viewResolver() {
@@ -59,20 +52,20 @@ public class ApplicationContextConfig {
 		return messageResource;
 	}
 
-	@Bean(name = "dataSource")
-	public DataSource getDataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
-		// See: application.properties
-		dataSource.setDriverClassName(env.getProperty("ds.database-driver"));
-		dataSource.setUrl(env.getProperty("ds.url"));
-		dataSource.setUsername(env.getProperty("ds.username"));
-		dataSource.setPassword(env.getProperty("ds.password"));
-
-		System.out.println("## getDataSource: " + dataSource);
-
-		return dataSource;
-	}
+//	@Bean(name = "dataSource")
+//	public DataSource getDataSource() {
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//
+//		// See: application.properties
+//		dataSource.setDriverClassName(env.getProperty("ds.database-driver"));
+//		dataSource.setUrl(env.getProperty("ds.url"));
+//		dataSource.setUsername(env.getProperty("ds.username"));
+//		dataSource.setPassword(env.getProperty("ds.password"));
+//
+//		System.out.println("## getDataSource: " + dataSource);
+//
+//		return dataSource;
+//	}
 
 	
 	@Bean

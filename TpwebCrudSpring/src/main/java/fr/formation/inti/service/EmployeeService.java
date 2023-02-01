@@ -13,7 +13,7 @@ public interface EmployeeService {
 
 	Employee save(Employee e);
 
-	void delete(Employee entiy);
+	
 
 	void deleteById(int id);
 

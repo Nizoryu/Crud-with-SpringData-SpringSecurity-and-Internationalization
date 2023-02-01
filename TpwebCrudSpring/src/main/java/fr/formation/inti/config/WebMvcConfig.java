@@ -39,7 +39,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	       registry
-	               .addResourceHandler("/XxKarimdu59xX/**","/IopMineur100/**","/Paul_emploi/**")
+	               .addResourceHandler("/Style/**","/img/**","/javaScript/**")
 	               .addResourceLocations("/resources/css/","/resources/image/","/resources/js/");
 	}
 
@@ -51,7 +51,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public SessionLocaleResolver localeResolver() {
 		SessionLocaleResolver resolver = new SessionLocaleResolver();
-		resolver.setDefaultLocale(new Locale("en","US"));
+		resolver.setDefaultLocale(new Locale("fr","FR"));
 		return resolver;
 
 	}

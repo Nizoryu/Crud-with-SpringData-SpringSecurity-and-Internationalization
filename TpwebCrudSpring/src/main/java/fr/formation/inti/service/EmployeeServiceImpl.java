@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,23 +23,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 //        long count = dao.count();
 
 		@Override
+		@PostAuthorize("hasRole('ROLE_USER')")
 		public List<Employee> findAll() {
-			
 			return dao.findAll();
 		}
 
 		@Override
 		@Transactional
+		@PreAuthorize("hasRole('ROLE_ADMIN')")
 		public Employee save(Employee e) {		
 			return dao.save(e);
 		}
 
-		@Override
-		public void delete(Employee entiy) {
-			// TODO Auto-generated method stub			
-		}
+
 
 		@Override
+		@PreAuthorize("hasRole('ROLE_ADMIN')")
 		public void deleteById(int id) {
 			dao.deleteById(id);
 			
@@ -45,8 +46,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		
 		@Override
-		public Optional<Employee> findById(Integer id) {
-			
+		@PreAuthorize("hasRole('ROLE_ADMIN')")
+		public Optional<Employee> findById(Integer id) {	
 			return dao.findById(id);
 		}
 //        System.out.println("Number of Employees: " + count);

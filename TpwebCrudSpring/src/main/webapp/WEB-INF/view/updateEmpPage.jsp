@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="UTF-8"%>
+	 <%@ taglib uri="http://www.springframework.org/tags" prefix="ss"%>  
+	 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>maj d'un employee</title>
+<meta charset="UTF-8">
+<title><ss:message code="page.upemp"></ss:message></title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -12,8 +14,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
-<jsp:include page="_menu.jsp" />
-	<form action="updateEmp" method="post">
+<jsp:include page="_navbar.jsp" />
+	<s:form action="updateEmp" method="post" modelAttribute="emp">
 
 <!-- style="min-height: 94vh;display:flex; flex-direction:column; " --> 
 		<!-- Section: Design Block -->
@@ -31,46 +33,52 @@
 						<div class="row d-flex justify-content-center">
 							<div class="col-lg-8">
 								<h2 class="fw-bold mb-5">Mise à jour de Employee n°${emp.empId}</h2>
-								<input hidden name="empId" value="${emp.empId}">
+								<input type="hidden" name="empId" value="${emp.empId}">
 									<!-- 2 column grid layout with text inputs for the first and last names -->
 									<div class="row">
 										<div class="col-md-6 mb-4">
 											<div class="form-outline">
-												<input type="text" name="firstName" id="form3Example1"
-													class="form-control" placeholder="FirstName" value="${emp.firstName }"/> <label
-													class="form-label" for="form3Example1"></label>
+												<s:input type="text" name="firstName" path="firstName"
+													class="form-control" placeholder="FirstName" value="${emp.firstName }"/> 
+													<s:errors path="firstName" cssClass="error" />
+													<label class="form-label" ></label>
 											</div>
 											
 										</div>
 										<div class="col-md-6 mb-4">
 											<div class="form-outline">
-												<input type="text" name="lastName" id="form3Example2"
-													class="form-control" placeholder="LastName" value="${emp.lastName }"/> <label
-													class="form-label" for="form3Example2"></label>
+												<s:input type="text" name="lastName" path="lastName"
+													class="form-control" placeholder="LastName" value="${emp.lastName }"/> 
+													<s:errors path="lastName" cssClass="error" />
+													<label class="form-label" ></label>
 											</div>
 										</div>
 									</div>
 
 									<!-- title input -->
 									<div class="form-outline mb-4">
-										<input type="text" name="title" id="form3Example3"
-											class="form-control" placeholder="title" value="${emp.title }" /> <label
-											class="form-label" for="form3Example3"></label>
+										<s:input type="text" name="title" path="title"
+											class="form-control" placeholder="title" value="${emp.title}" /> 
+											<s:errors path="title" cssClass="error" />
+											<label class="form-label" ></label>
+											
 									</div>
 									<!-- startdate input -->
 
 
 									<div class="form-outline mb-4">
-										<input type="date" name="startDate" id="form3Example3"
+										<s:input type="date" name="startDate"  path="startDate"
 											class="form-control" placeholder="startdate" 
-											 value="${emp.startDate }"/> <label class="form-label"
-											for="form3Example3"> </label>
+											 value="${emp.startDate }"/> 
+											 <s:errors path="startDate" cssClass="error" />
+											 <label class="form-label"> </label>
 									</div>
 
 
 									<!-- Submit button -->
 									<button type="submit" class="btn btn-primary btn-block mb-4">
 										Modifier</button>
+							
 
 
 							</div>
@@ -80,7 +88,7 @@
 			</div>
 		</section>
 
-	</form>
+	</s:form>
 </body>
 <footer class="">
 </footer>

@@ -19,15 +19,12 @@ public class EmployeeValidator implements Validator{
 	@Override
 	public void validate(Object obj, Errors errors) {
 	
-		ValidationUtils.rejectIfEmpty(errors, "firstName", "firstName.required");
-		ValidationUtils.rejectIfEmpty(errors, "lastName", "lastName.required");
-		ValidationUtils.rejectIfEmpty(errors, "title", "title.required");
-		ValidationUtils.rejectIfEmpty(errors, "startDate", "startDate.required");
+		ValidationUtils.rejectIfEmpty(errors, "firstName", "valid.rejectIfEmpty");
+		ValidationUtils.rejectIfEmpty(errors, "lastName", "valid.rejectIfEmpty");
+		ValidationUtils.rejectIfEmpty(errors, "title", "valid.rejectIfEmpty","null");
+		ValidationUtils.rejectIfEmpty(errors, "startDate", "valid.rejectIfEmpty");
 				
-//		Employee emp = (Employee) obj;
-//		if(emp.getStartDate()){
-//			errors.rejectValue("id", "negativeValue", new Object[]{"'id'"}, "id can't be negative");
-//		}
+
 	
 		
 	}

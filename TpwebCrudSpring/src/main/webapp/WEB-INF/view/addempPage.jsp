@@ -1,23 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Ajouter un employee</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<meta charset="UTF-8">
+<title><ss:message code="page.addemp"></ss:message></title>
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
 
 </head>
 </head>
 <body>
-<jsp:include page="_menu.jsp" />
+<jsp:include page="_navbar.jsp" />
 	<s:form action="saveEmp" method="post" modelAttribute="employee">
 
 
@@ -66,8 +64,9 @@
 
 
 								<div class="form-outline mb-4">
-									<input type="date" name="startDate" id="form3Example3"
+									<s:input type="date" name="startDate" path="startDate"
 										class="form-control" placeholder="starttdate" min="2023-01-01" />
+										<s:errors path="startDate" cssClass="error" />
 									<label class="form-label" for="form3Example3"> </label>
 								</div>
 

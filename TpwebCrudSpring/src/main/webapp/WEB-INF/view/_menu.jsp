@@ -27,6 +27,6 @@
   </c:if>
   <a href="${pageContext.request.contextPath}/listemployee">Menu Employee</a>
  			<h6>${pageContext.request.userPrincipal.name}</h6>
- 			<h6></h6>
+ 			
 			
 </div>

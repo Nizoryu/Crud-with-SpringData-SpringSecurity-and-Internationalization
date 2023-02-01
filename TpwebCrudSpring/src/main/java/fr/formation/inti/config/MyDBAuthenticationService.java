@@ -19,15 +19,22 @@ public class MyDBAuthenticationService implements UserDetailsService {
 
 	@Autowired
 	private UserService userserv;
+	
+	public fr.formation.inti.entity.User userapp;
+	
+	
 
 		@Override
 		public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-			System.out.println("method loadUserByUsername");	
+				
 			fr.formation.inti.entity.User u = userserv.findByEmail(email);
 			if (u == null) {
 				throw new UsernameNotFoundException("User " + email + " n'est pas dans la bd");
 			}
+//			HttpSession session;
+//			session.setAttribute("user", u);
 			System.out.println("role: "+u.getRoleName());
+			
 
 		// [USER,ADMIN,..]
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
@@ -46,6 +53,8 @@ public class MyDBAuthenticationService implements UserDetailsService {
 		grantList.add(authority);  
 		UserDetails userDetails = (UserDetails) new User(u.getFirstName(), //
 				u.getPassword(), grantList);
+		
+		
 
 		return userDetails;
 	}
