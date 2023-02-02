@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	 <%@ taglib uri="http://www.springframework.org/tags" prefix="ss"%>  
 	 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s"%>
+	 	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,6 +81,14 @@
 										Modifier</button>
 							
 
+<%-- <c:if test="${not empty emp.employees }"></c:if>
+<label for="sub">Choose a sub:</label>
+<select name="pets" id="sub">
+    <option value="">--Please choose an option--</option>
+    <c:forEach items="${emp.employees}" var="empsub">
+    <option value="">${empsub.firstName}</option>
+	</c:forEach>
+</select> --%>
 
 							</div>
 						</div>

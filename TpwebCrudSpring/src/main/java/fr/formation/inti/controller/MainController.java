@@ -1,7 +1,6 @@
 package fr.formation.inti.controller;
 
 import java.security.Principal;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,28 +49,28 @@ public class MainController {
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
 	public String welcomePage(Model model, Principal principal) {
 //		model.addAttribute("user", u);
-		log.info("GetMapping: WelcomePage.jsp");
+		log.warn("GetMapping: WelcomePage.jsp");
 		return "view/welcomePage";
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(Model model, Principal principal) {
 
-		log.info("GetMapping: adminPage.jsp");
+		log.warn("GetMapping: adminPage.jsp");
 		return "view/adminPage";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(Model model, Principal principal) {
 
-		log.info("GetMapping: loginPage2.jsp");
+		log.warn("GetMapping: loginPage2.jsp");
 		return "view/loginPage2";
 	}
 
 	@RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
 	public String logoutSuccessfulPage(Model model) {
 		model.addAttribute("title", "Logout");
-		log.info("GetMapping: logoutSuccessfulPage.jsp");
+		log.warn("GetMapping: logoutSuccessfulPage.jsp");
 		return "view/logoutSuccessfulPage";
 	}
 
@@ -94,7 +93,7 @@ public class MainController {
 		model.addAttribute("message",
 				"Hi " + principal.getName() + "<br> You do not have permission to access this page!");
 
-		log.info("GetMapping: 403Page.jsp");
+		log.warn("GetMapping: 403Page.jsp");
 		return "view/403Page";
 	}
 
@@ -118,11 +117,12 @@ public class MainController {
 		Employee e = employee;
 		model.addAttribute("empId",e.getEmpId());
 		if (br.hasErrors()) {
+			log.error("Bindind error Update "+ employee);
 			return "redirect:/updateEmp";
 //			return "view/updateEmpPage";
 		}
 		empserv.save(e);
-		log.debug("Update "+ employee);
+		log.warn("Update "+ employee);
 		return "redirect:/listemployee";
 
 	}
@@ -136,11 +136,13 @@ public class MainController {
 	@PostMapping(value = "/saveEmp")
 	public String SaveEmployeePost(@Validated @ModelAttribute("employee") Employee employee, BindingResult br) {
 		if (br.hasErrors()) {
+			log.error("Bindind error Save "+ employee);
 			return "view/addempPage";
 		}
 		System.out.println(employee);
-		employee.setStartDate(new GregorianCalendar().getTime());
+//		employee.setStartDate(new GregorianCalendar().getTime());
 		empserv.save(employee);
+		log.warn("Save:"+ employee);
 		return "redirect:/listemployee";
 
 	}
@@ -149,6 +151,7 @@ public class MainController {
 	public String DeleteEmp(@RequestParam("id") int id, Model model) {
 		empserv.deleteById(id);
 		System.out.println(id);
+		log.warn("Delete id:"+ id);
 		return "redirect:/listemployee";
 	}
 

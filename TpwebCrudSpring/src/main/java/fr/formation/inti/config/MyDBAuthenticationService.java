@@ -3,6 +3,8 @@ package fr.formation.inti.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +23,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
 	private UserService userserv;
 	
 	public fr.formation.inti.entity.User userapp;
+	private static final Logger log3 = LogManager.getLogger(MyDBAuthenticationService.class);
 	
 	
 
@@ -34,6 +37,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
 //			HttpSession session;
 //			session.setAttribute("user", u);
 			System.out.println("role: "+u.getRoleName());
+			log3.debug("connection with :"+u);
 			
 
 		// [USER,ADMIN,..]
@@ -54,7 +58,7 @@ public class MyDBAuthenticationService implements UserDetailsService {
 		UserDetails userDetails = (UserDetails) new User(u.getFirstName(), //
 				u.getPassword(), grantList);
 		
-		
+		log3.debug("autorisation:"+grantList);
 
 		return userDetails;
 	}

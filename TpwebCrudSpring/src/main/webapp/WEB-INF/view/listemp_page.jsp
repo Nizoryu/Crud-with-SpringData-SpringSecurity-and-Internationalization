@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@page session="false"%>
+<%@page session="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
- <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>  
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +35,10 @@
 						<h2 class="fw-bold mb-2" align="center">Management de la
 							liste: Employee</h2>
 						<div align="center">
-	                      <sec:authorize access="hasRole('ROLE_ADMIN')">
-							<a class="btn btn-primary bg-gradient mt-4" href="saveEmp"
-								role="button">Ajouter un employé</a>
-									</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<a class="btn btn-primary bg-gradient mt-4" href="saveEmp"
+									role="button">Ajouter un employé</a>
+							</sec:authorize>
 						</div>
 						<table class="table table-striped table-hover"
 							data-page-list="[10, 25, 50, 100, all]" data-pagination="true"
@@ -45,10 +46,18 @@
 							<thead>
 								<tr style="text-align: center">
 									<th>ID</th>
-									<th><s:message code="emp.firstName"></s:message></th>
-									<th><s:message code="emp.lastName"></s:message></th>
-									<th><s:message code="emp.title"></s:message></th>
-									<th><s:message code="emp.startDate"></s:message></th>
+									<th>
+										<s:message code="emp.firstName"></s:message>
+									</th>
+									<th>
+										<s:message code="emp.lastName"></s:message>
+									</th>
+									<th>
+										<s:message code="emp.title"></s:message>
+									</th>
+									<th>
+										<s:message code="emp.startDate"></s:message>
+									</th>
 									<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<th>Modification</th>
 									</sec:authorize>
@@ -57,24 +66,28 @@
 							<tbody>
 								<c:forEach items="${listemp}" var="emp">
 									<tr style="text-align: center">
-										<td >${emp.empId }</td>
-										<td >${emp.firstName }</td>
+										<td>${emp.empId }</td>
+										<td>${emp.firstName }</td>
 										<td>${emp.lastName }</td>
 										<td style="text-align: start">${emp.title }</td>
 										<td>${emp.startDate}</td>
 										<sec:authorize access="hasRole('ROLE_ADMIN')">
-										<td>
+											<td>
 												<a
 													href="updateEmp?empId=<c:out value="${emp.empId}"></c:out>"
-													id="id" class="edit" data-toggle="modal"><i
-													class="bi bi-pencil-square" style="font-size: 1.1rem;"></i></a>
+													id="id" class="edit" data-toggle="modal">
+													<i class="bi bi-pencil-square" style="font-size: 1.1rem;"></i>
+												</a>
 												<a href="deleteEmp?id=<c:out value="${emp.empId}"></c:out>"
-													class="delete" data-toggle="modal"><i
-													class="bi bi-x-square-fill"
-													style="color: red; font-size: 1.1rem;"></i></a>
+													class="delete"
+													onclick="return confirm('<s:message code="confirm.del"></s:message> ${emp.empId}');"
+													data-toggle="modal">
+													<i class="bi bi-x-square-fill"
+														style="color: red; font-size: 1.1rem;"></i>
+												</a>
 												<input type="hidden" name="id" id="id">
 											</td>
-											</sec:authorize>
+										</sec:authorize>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -1,12 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>   
 
 <html>
 <head><title>Login</title></head>
 <body>
-   <jsp:include page="_menu.jsp" />
+   <jsp:include page="_navbar.jsp" />
    
    
-   <h1>Login</h1>
+   <h1><s:message code="page.login"></s:message></h1>
     
      <!-- /login?error=true -->
      <c:if test="${param.error == 'true'}">
